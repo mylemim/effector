@@ -17,8 +17,9 @@ public class Projectile : MonoBehaviour {
 			Destroy (gameObject);
 	}
 
-	void OnCollisionEnter2D (Collision2D collision)
+	void OnTriggerEnter2D (Collider2D other)
 	{
-		Destroy (gameObject);
+		if(!other.CompareTag("Untagged"))
+			Destroy (gameObject);
 	}
 }
