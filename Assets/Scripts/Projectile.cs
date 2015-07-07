@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour {
 	public float LifeTimeSeconds = 2;
 	private float timeOfCreation;
 
+	public string TargetTag = "Enemy";
+
 	void Start()
 	{
 		timeOfCreation = Time.time;
@@ -21,5 +23,7 @@ public class Projectile : MonoBehaviour {
 	{
 		if(!other.CompareTag("Untagged"))
 			Destroy (gameObject);
+		if (other.CompareTag(TargetTag))
+			Destroy (other.gameObject);
 	}
 }
