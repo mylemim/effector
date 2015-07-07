@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 153816, guid: e34acf18980f72247a6dc5cbeb20ef1b, type: 2}
-  RelativeShootingDistanceFromShip: .711000025
+  RelativeShootingDistanceFromShip: .467999995
   ShotsPerSecond: 4
   ProjectileSpeed: 1000
 --- !u!212 &21213196
