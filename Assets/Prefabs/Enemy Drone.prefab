@@ -12,7 +12,7 @@ GameObject:
   - 50: {fileID: 5063240}
   - 61: {fileID: 6145078}
   - 114: {fileID: 11449534}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy Drone
   m_TagString: Enemy
   m_Icon: {fileID: 0}
