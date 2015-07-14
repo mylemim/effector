@@ -19,11 +19,8 @@ public class ShipFiring : MonoBehaviour
 		}
 	}
 
-	private Rigidbody2D shipRigidbody;
-
 	void Start ()
 	{
-		shipRigidbody = gameObject.GetComponent<Rigidbody2D> ();
 		lastTimeOfFiring = Time.time;
 	}
 
