@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ScoreCounter : Counter {
+public class HealthCounter : Counter {
 
 	Text text;
 
@@ -14,13 +14,13 @@ public class ScoreCounter : Counter {
 		
 		set{
 			this.value = value;
-			text.text = this.value.ToString ("D7");
+			if(text!=null)
+				text.text = this.value.ToString();
 		}
 	}
 
 	// Use this for initialization
-	protected override void Start () {
+	protected void Awake () {
 		text = gameObject.GetComponent<Text>();
-		this.Value = 0;
 	}
 }

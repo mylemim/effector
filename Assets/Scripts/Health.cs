@@ -2,12 +2,17 @@
 using System.Collections;
 
 public class Health: MonoBehaviour{
-	public float HealthAmount = 10;
+	public float StartingHealthAmount = 10;
+	protected float healthAmount;
 
-	public void ApplyDamage (float damage)
+	protected virtual void Start(){
+		healthAmount = StartingHealthAmount;
+	}
+
+	public virtual void ApplyDamage (float damage)
 	{
-		HealthAmount -= damage;
-		if (HealthAmount <= 0)
+		healthAmount -= damage;
+		if (healthAmount <= 0)
 			Die ();
 	}
 

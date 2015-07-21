@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScoreGiver : MonoBehaviour {
+public class ScoreUpdater : MonoBehaviour {
 
 	public int PointsAwarded = 10;
 	public string ScoreCounterName = "Score Counter";
@@ -9,6 +9,6 @@ public class ScoreGiver : MonoBehaviour {
 	void OnDestroy(){
 		GameObject scoreCounter = GameObject.Find (ScoreCounterName);	
 		if(scoreCounter!=null)
-			scoreCounter.GetComponent<ScoreCounter>().AddPoints (PointsAwarded);
+			scoreCounter.GetComponent<Counter>().Value += PointsAwarded;
 	}
 }
