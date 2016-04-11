@@ -13,6 +13,9 @@ public class InitializeStaticEnvironment : MonoBehaviour
     public float minY = 0;
     public float maxY = 10;
 
+    //Name of the group object the spawned objects will be stored in
+    public GameObject targetGroup;
+
     // Use this for initialization
     void Start()
     {
@@ -22,6 +25,8 @@ public class InitializeStaticEnvironment : MonoBehaviour
         {
             Vector2 newPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
             GameObject spawnedGameObject = (GameObject)Instantiate(gameObjectToInstantiate, newPosition, Quaternion.identity);
+            if (targetGroup)
+                spawnedGameObject.transform.parent = targetGroup.transform;
         }
     }
 }
