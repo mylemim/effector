@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6075e13cab6a1b4fb1a37edb53a5b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthAmount: 150
+  StartingHealthAmount: 150
+  HealthCounterName: Health Counter
 --- !u!212 &21213196
 SpriteRenderer:
   m_ObjectHideFlags: 1
