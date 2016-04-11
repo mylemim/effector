@@ -7,11 +7,12 @@ public class SpawnPoint : MonoBehaviour
     public GameObject gameObjectToInstantiate;
     public float waitingTimeBetweenSpawns = 5; //seconds
     public int maxGameObjectsToInstantiate = 10;
-    private int instantiatedGameObjects;
-    private float lastSpawnTime;
-
     //Name of the group object the spawned objects will be stored in
     public GameObject targetGroup;
+    public Vector2 spawnLocation;
+
+    private int instantiatedGameObjects;
+    private float lastSpawnTime;
 
     // Use this for initialization
     void Start()
@@ -25,7 +26,7 @@ public class SpawnPoint : MonoBehaviour
     {
         if (instantiatedGameObjects < maxGameObjectsToInstantiate && Time.time - lastSpawnTime > waitingTimeBetweenSpawns)
         {
-            GameObject spawnedGameObject = (GameObject)Instantiate(gameObjectToInstantiate, gameObject.transform.position, Quaternion.identity);
+            GameObject spawnedGameObject = (GameObject)Instantiate(gameObjectToInstantiate, spawnLocation, Quaternion.identity);
 
             //Reference the target group
             if (targetGroup)
