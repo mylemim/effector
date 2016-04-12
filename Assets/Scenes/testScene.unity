@@ -386,7 +386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjectToInstantiate: {fileID: 150036, guid: 240956a81017853409809bfdb8cc49e8,
     type: 2}
-  maxGameObjectsToInstantiate: 6
+  minGameObjectsToInstantiate: 3
+  maxGameObjectsToInstantiate: 7
   staticLayerName: World
   minX: -8
   maxX: 8

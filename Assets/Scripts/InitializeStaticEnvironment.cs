@@ -4,6 +4,7 @@ using System.Collections;
 public class InitializeStaticEnvironment : MonoBehaviour
 {
     public GameObject gameObjectToInstantiate;
+    public int minGameObjectsToInstantiate = 2;
     public int maxGameObjectsToInstantiate = 10;
 
     public string staticLayerName = "World";
@@ -22,7 +23,7 @@ public class InitializeStaticEnvironment : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        int targetNumberOfObjects = Random.Range(2, maxGameObjectsToInstantiate);
+        int targetNumberOfObjects = Random.Range(minGameObjectsToInstantiate, maxGameObjectsToInstantiate);
         for (int i = 0; i < targetNumberOfObjects; i++)
         {
             Vector2 newPosition;
