@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 24367959}
   - 61: {fileID: 24367960}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Left Bound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 51022045}
   - 61: {fileID: 51022044}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Top Bound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 266568217}
   - 61: {fileID: 266568218}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Bottom Bound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 315875633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Asteroids
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,11 +247,74 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 315875632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.20665285, y: 0.51129013, z: -10.015625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 989565009}
+  m_RootOrder: 0
+--- !u!1 &332350722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 332350725}
+  - 114: {fileID: 332350724}
+  - 114: {fileID: 332350723}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &332350723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 332350722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbca3f112224de4ba9bbbb70747c180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectToInstantiate: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629,
+    type: 2}
+  waitingTimeBetweenSpawns: 1
+  maxGameObjectsToInstantiate: 5
+  targetGroup: {fileID: 332350722}
+  spawnLocation: {x: -12, y: 0}
+--- !u!114 &332350724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 332350722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbca3f112224de4ba9bbbb70747c180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectToInstantiate: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629,
+    type: 2}
+  waitingTimeBetweenSpawns: 1
+  maxGameObjectsToInstantiate: 5
+  targetGroup: {fileID: 332350722}
+  spawnLocation: {x: 12, y: 0}
+--- !u!4 &332350725
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 332350722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1540498, y: 2.6075535, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
 --- !u!1 &424031014
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +324,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 424031015}
   - 61: {fileID: 424031016}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Right Bound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,9 +367,9 @@ GameObject:
   - 4: {fileID: 989565009}
   - 114: {fileID: 989565008}
   m_Layer: 8
-  m_Name: Environment Spawn
+  m_Name: Environment
   m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -324,11 +387,13 @@ MonoBehaviour:
   gameObjectToInstantiate: {fileID: 150036, guid: 240956a81017853409809bfdb8cc49e8,
     type: 2}
   maxGameObjectsToInstantiate: 6
+  staticLayerName: World
   minX: -8
   maxX: 8
   minY: -3
   maxY: 4
-  targetGroup: Asteroids
+  maxDistanceRadius: 3
+  targetGroup: {fileID: 315875632}
 --- !u!4 &989565009
 Transform:
   m_ObjectHideFlags: 0
@@ -336,54 +401,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 989565007}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 315875633}
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!1 &1572181000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1572181002}
-  - 114: {fileID: 1572181001}
-  m_Layer: 8
-  m_Name: Spawn Point Right
-  m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1572181001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1572181000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adbca3f112224de4ba9bbbb70747c180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectToInstantiate: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629,
-    type: 2}
-  waitingTimeBetweenSpawns: 1
-  maxGameObjectsToInstantiate: 5
---- !u!4 &1572181002
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1572181000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
 --- !u!1 &1619387632
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +416,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1619387634}
   - 114: {fileID: 1619387633}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: World Bounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,46 +980,3 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2043904448}
---- !u!1 &2110573537
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2110573539}
-  - 114: {fileID: 2110573538}
-  m_Layer: 8
-  m_Name: Spawn Point Left
-  m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2110573538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2110573537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adbca3f112224de4ba9bbbb70747c180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectToInstantiate: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629,
-    type: 2}
-  waitingTimeBetweenSpawns: 1
-  maxGameObjectsToInstantiate: 5
---- !u!4 &2110573539
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2110573537}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
