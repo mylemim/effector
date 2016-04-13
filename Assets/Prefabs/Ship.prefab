@@ -64,14 +64,14 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -0.16, y: 0.24}
-      - {x: -0.25, y: 0.13}
-      - {x: -0.25, y: -0.16}
-      - {x: -0.1, y: -0.32}
-      - {x: 0.15, y: -0.32}
-      - {x: 0.29, y: -0.2}
-      - {x: 0.29, y: 0.08}
-      - {x: 0.18, y: 0.24}
+    - - {x: -0.1244756, y: 0.21540618}
+      - {x: -0.2336042, y: 0.056218624}
+      - {x: -0.2281388, y: -0.12994075}
+      - {x: -0.0808715, y: -0.2981388}
+      - {x: 0.106277786, y: -0.29813874}
+      - {x: 0.26459834, y: -0.14003634}
+      - {x: 0.25720838, y: 0.07180214}
+      - {x: 0.15267342, y: 0.21813893}
 --- !u!114 &11414800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,7 +122,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: fbce530824279724695c5e084e922e5f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
