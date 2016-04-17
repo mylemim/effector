@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Health {
 
@@ -24,7 +23,7 @@ public class PlayerHealth : Health {
 	}
 
 	public override void Die(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.PlayerLost();
     }
 
 }

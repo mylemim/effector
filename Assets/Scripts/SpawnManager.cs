@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SpawnManager : MonoBehaviour
@@ -46,7 +45,7 @@ public class SpawnManager : MonoBehaviour
                 spawnedGameObject.transform.parent = targetGroup.transform;
 
             //Add reference to spawn so we can recognize when this object has been destroyed
-            SpawnedObject spawnedObjectBehavior = spawnedGameObject.AddComponent<SpawnedObject>();
+            spawnedGameObject.AddComponent<SpawnedObject>();
 
             lastSpawnTime = Time.time;
             instantiatedGameObjects += 1;
@@ -58,6 +57,6 @@ public class SpawnManager : MonoBehaviour
         destroyedGameObjects++;
 
         if (destroyedGameObjects == gameObjectsToInstantiate)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameManager.PlayerWon();
     }
 }
