@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SpawnManager : MonoBehaviour
@@ -15,6 +16,15 @@ public class SpawnManager : MonoBehaviour
 
     private int instantiatedGameObjects;
     private float lastSpawnTime;
+
+    private int destroyedGameObjects=0;
+
+    [ExecuteInEditMode]
+    void OnValidate()
+    {
+        gameObjectsToInstantiate = Mathf.Abs(gameObjectsToInstantiate);
+        waitingTimeBetweenSpawns = Mathf.Abs(waitingTimeBetweenSpawns);
+    }
 
     // Use this for initialization
     void Start()
@@ -35,15 +45,19 @@ public class SpawnManager : MonoBehaviour
             if (targetGroup)
                 spawnedGameObject.transform.parent = targetGroup.transform;
 
+            //Add reference to spawn so we can recognize when this object has been destroyed
+            SpawnedObject spawnedObjectBehavior = spawnedGameObject.AddComponent<SpawnedObject>();
+
             lastSpawnTime = Time.time;
             instantiatedGameObjects += 1;
         }
     }
 
-    [ExecuteInEditMode]
-    void OnValidate()
+    public void NotifyOfSpawnedObjectDestroyed()
     {
-        gameObjectsToInstantiate = Mathf.Abs(gameObjectsToInstantiate);
-        waitingTimeBetweenSpawns = Mathf.Abs(waitingTimeBetweenSpawns);
+        destroyedGameObjects++;
+
+        if (destroyedGameObjects == gameObjectsToInstantiate)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
