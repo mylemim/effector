@@ -14,7 +14,6 @@ GameObject:
   - 114: {fileID: 11449534}
   - 114: {fileID: 11423786}
   - 114: {fileID: 11402552}
-  - 114: {fileID: 11456696}
   m_Layer: 16
   m_Name: Enemy Drone
   m_TagString: Enemy
@@ -103,19 +102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetTag: Player
   Speed: 4
---- !u!114 &11456696
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f16aff056e2d7a4b96973c1b54ae1d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PointsAwarded: 10
-  ScoreCounterName: Score Counter
 --- !u!212 &21231798
 SpriteRenderer:
   m_ObjectHideFlags: 1
