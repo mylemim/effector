@@ -292,8 +292,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 332350725}
-  - 114: {fileID: 332350724}
-  - 114: {fileID: 332350723}
+  - 114: {fileID: 332350726}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -301,40 +300,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &332350723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 332350722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adbca3f112224de4ba9bbbb70747c180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectToInstantiate: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629,
-    type: 2}
-  waitingTimeBetweenSpawns: 1
-  maxGameObjectsToInstantiate: 5
-  targetGroup: {fileID: 332350722}
-  spawnLocation: {x: -12, y: 0}
---- !u!114 &332350724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 332350722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adbca3f112224de4ba9bbbb70747c180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectToInstantiate: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629,
-    type: 2}
-  waitingTimeBetweenSpawns: 1
-  maxGameObjectsToInstantiate: 5
-  targetGroup: {fileID: 332350722}
-  spawnLocation: {x: 12, y: 0}
 --- !u!4 &332350725
 Transform:
   m_ObjectHideFlags: 0
@@ -347,6 +312,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &332350726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 332350722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9db83a8a4e6080479cb4fd86a48171a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 0}
+  waitingTimeBetweenSpawns: 0.5
+  gameObjectsToInstantiate: 20
+  targetGroup: {fileID: 332350722}
+  spawnLocations:
+  - {x: 12, y: 0}
+  - {x: -12, y: 0}
 --- !u!1 &424031014
 GameObject:
   m_ObjectHideFlags: 0
