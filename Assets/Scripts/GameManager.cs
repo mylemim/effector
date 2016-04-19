@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
     static GameObject winNotification;
     static GameObject loseNotification;
 
+    static bool isGameFinished = false;
+
     // Use this for initialization
     void Start () {
         winNotification = GameObject.Find("PlayerWon");
@@ -29,13 +31,21 @@ public class GameManager : MonoBehaviour {
 
     public static void PlayerWon()
     {
-        winNotification.SetActive(true);
-        winNotification.GetComponentInChildren<Button>().onClick.AddListener(() => { RestartLevel(); });
+        if(!isGameFinished)
+        {
+            isGameFinished = true;
+            winNotification.SetActive(true);
+            winNotification.GetComponentInChildren<Button>().onClick.AddListener(() => { RestartLevel(); });
+        }
     }
 
     public static void PlayerLost()
     {
-        loseNotification.SetActive(true);
-        loseNotification.GetComponentInChildren<Button>().onClick.AddListener(() => { RestartLevel(); });
+        if (!isGameFinished)
+        {
+            isGameFinished = true;
+            loseNotification.SetActive(true);
+            loseNotification.GetComponentInChildren<Button>().onClick.AddListener(() => { RestartLevel(); });
+        }
     }
 }
