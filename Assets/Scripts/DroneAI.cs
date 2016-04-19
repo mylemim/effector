@@ -20,7 +20,7 @@ public class DroneAI : MonoBehaviour
     /// <summary>
     /// We're giving a randomized turn direction (either up (1) or down (-1))
     /// </summary>
-    private int preferredTurnDirection = Random.Range(1, 2) % 2 == 0 ? 1 : -1;
+    private int preferredTurnDirection;
 
     private GameObject targetGameObject;
     private Rigidbody2D droneRigidbody;
@@ -28,6 +28,7 @@ public class DroneAI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        preferredTurnDirection = Random.Range(1, 2) % 2 == 0 ? 1 : -1;
         targetGameObject = GameObject.FindGameObjectWithTag(TargetTag);
         droneRigidbody = gameObject.GetComponent<Rigidbody2D>();
     }
