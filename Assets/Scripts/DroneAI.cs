@@ -36,15 +36,18 @@ public class DroneAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 directionTowardsPlayer = targetGameObject.transform.position - transform.position;
-        directionTowardsPlayer.Normalize();
+        if (targetGameObject != null)
+        {
+            Vector2 directionTowardsPlayer = targetGameObject.transform.position - transform.position;
+            directionTowardsPlayer.Normalize();
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionTowardsPlayer, objectAvoidanceDistance, LayerMask.GetMask(new string[] { "World" }));
-        if (hit.collider != null)
-            //Turn harder the closer you are to the target object
-            droneRigidbody.AddForce(Vector2.up * preferredTurnDirection * turnSpeed * hit.distance / objectAvoidanceDistance);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionTowardsPlayer, objectAvoidanceDistance, LayerMask.GetMask(new string[] { "World" }));
+            if (hit.collider != null)
+                //Turn harder the closer you are to the target object
+                droneRigidbody.AddForce(Vector2.up * preferredTurnDirection * turnSpeed * hit.distance / objectAvoidanceDistance);
 
-        MoveInDirection(directionTowardsPlayer);
+            MoveInDirection(directionTowardsPlayer);
+        }
     }
 
     private void MoveInDirection(Vector2 direction)

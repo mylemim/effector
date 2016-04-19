@@ -23,6 +23,7 @@ public class PlayerHealth : Health {
 	}
 
 	public override void Die(){
+        base.Die();
         GameManager.PlayerLost();
     }
 
