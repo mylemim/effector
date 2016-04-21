@@ -38,10 +38,7 @@ public class ShipMovement : MonoBehaviour
 
 	void RotateTowardsMouse ()
 	{
-		Vector2 mousePosition = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
-		Vector2 positionDifference = Camera.main.ScreenToWorldPoint (mousePosition)-transform.position;
-
-		float rotationAmount = Mathf.Atan2(positionDifference.y, positionDifference.x) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.Euler(0f, 0f, rotationAmount - 90);
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePosition - (Vector2)transform.position);
 	}
 }
