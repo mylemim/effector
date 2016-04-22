@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class SpawnManager : MonoBehaviour
     /// Name of the group object the spawned objects will be stored in
     /// </summary>
     public GameObject targetGroup;
-    public Vector2[] spawnLocations;
+	public Vector2[] spawnLocations;
+
+	public UnityEvent OnAllEnemiesDestroyed;
 
     private int instantiatedGameObjects;
     private float lastSpawnTime;
@@ -45,7 +48,8 @@ public class SpawnManager : MonoBehaviour
                 spawnedGameObject.transform.parent = targetGroup.transform;
 
             //Add reference to spawn so we can recognize when this object has been destroyed
-            spawnedGameObject.AddComponent<SpawnedObject>();
+            SpawnedObject spawnedObject = spawnedGameObject.AddComponent<SpawnedObject>();
+			spawnedObject.OnSpawnedObjectDeath.AddListener (NotifyOfSpawnedObjectDestroyed);
 
             lastSpawnTime = Time.time;
             instantiatedGameObjects += 1;
@@ -54,9 +58,9 @@ public class SpawnManager : MonoBehaviour
 
     public void NotifyOfSpawnedObjectDestroyed()
     {
-        destroyedGameObjects++;
+		destroyedGameObjects++;
 
         if (destroyedGameObjects == gameObjectsToInstantiate)
-            GameManager.PlayerWon();
+			OnAllEnemiesDestroyed.Invoke();
     }
 }

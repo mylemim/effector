@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    static GameObject winNotification;
-    static GameObject loseNotification;
-
-    static bool isGameFinished = false;
+    GameObject winNotification;
+   	GameObject loseNotification;
 
     // Use this for initialization
     void Start () {
@@ -18,34 +16,25 @@ public class GameManager : MonoBehaviour {
         winNotification.SetActive(false);
         loseNotification.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update () {
-	
-	}
-
-    static void RestartLevel()
+		
+    public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public static void PlayerWon()
+    public void PlayerWon()
     {
-        if(!isGameFinished)
+		if(!loseNotification.activeSelf)
         {
-            isGameFinished = true;
             winNotification.SetActive(true);
-            winNotification.GetComponentInChildren<Button>().onClick.AddListener(() => { RestartLevel(); });
         }
     }
 
-    public static void PlayerLost()
+    public void PlayerLost()
     {
-        if (!isGameFinished)
+		if (!winNotification.activeSelf)
         {
-            isGameFinished = true;
             loseNotification.SetActive(true);
-            loseNotification.GetComponentInChildren<Button>().onClick.AddListener(() => { RestartLevel(); });
         }
     }
 }

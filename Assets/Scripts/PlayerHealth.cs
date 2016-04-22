@@ -1,30 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
+using System;
 
 public class PlayerHealth : Health {
 
 	public string HealthCounterName = "Health Counter";
 
+	public OnHealthChangedEvent OnHealthChanged;
+	public UnityEvent OnPlayerDeath;
+
+	[Serializable]
+	public class OnHealthChangedEvent : UnityEvent<int>{};
+
 	protected override void Start(){
 		base.Start ();
-		UpdateHealthCounter ();
+		OnHealthChanged.Invoke ((int)this.healthAmount);
 	}
 
 	public override void ApplyDamage (float damage)
 	{
 		base.ApplyDamage (damage);
-		UpdateHealthCounter ();
-	}
-
-	private void UpdateHealthCounter(){
-		GameObject healthCounter = GameObject.Find (HealthCounterName);	
-		if (healthCounter != null) 
-			healthCounter.GetComponent<Counter> ().Value = (int)healthAmount;
+		OnHealthChanged.Invoke ((int)this.healthAmount);
 	}
 
 	public override void Die(){
+		OnPlayerDeath.Invoke ();
         base.Die();
-        GameManager.PlayerLost();
     }
 
 }

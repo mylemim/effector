@@ -1,23 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class SpawnedObject : MonoBehaviour
 {
 
-    private SpawnManager spawnManager;
-
-    // Use this for initialization
-    void Start()
-    {
-        spawnManager = GameObject.FindObjectOfType<SpawnManager>();
-    }
+	public UnityEvent OnSpawnedObjectDeath = new UnityEvent();
 
     void OnDestroy()
     {
-        if (spawnManager != null)
-        {
-            spawnManager.NotifyOfSpawnedObjectDestroyed();
-        }
+		if(OnSpawnedObjectDeath!=null)
+			OnSpawnedObjectDeath.Invoke ();
     }
 }
 
