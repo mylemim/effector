@@ -10,7 +10,7 @@ public class DroneAI : MonoBehaviour
     /// <summary>
     /// Distance from other objects before the script-owning objects starts to avoid them
     /// </summary>
-    private float objectAvoidanceDistance = 5f;
+    private float objectAvoidanceDistance = 6f;
 
     /// <summary>
     /// Angle of turning when an obstructing object is detected
@@ -37,24 +37,32 @@ public class DroneAI : MonoBehaviour
     void Update()
     {
         if (targetGameObject != null)
-        {
-            Vector2 directionTowardsPlayer = targetGameObject.transform.position - transform.position;
-            directionTowardsPlayer.Normalize();
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionTowardsPlayer, objectAvoidanceDistance, LayerMask.GetMask(new string[] { "World" }));
-            if (hit.collider != null)
-                //Turn harder the closer you are to the target object
-                droneRigidbody.AddForce(Vector2.up * preferredTurnDirection * turnSpeed * hit.distance / objectAvoidanceDistance);
-
-            MoveInDirection(directionTowardsPlayer);
-        }
+            MoveTowardsPlayer();
     }
 
-    private void MoveInDirection(Vector2 direction)
+    private void MoveTowardsPlayer()
     {
-        float rotationAmount = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationAmount - 90);
+        Vector2 directionTowardsPlayer = targetGameObject.transform.position - transform.position;
 
-        droneRigidbody.AddForce(direction * Speed);
+        AttemptAvoidanceManoeuvre(directionTowardsPlayer);
+        RotateTowardsPlayer(directionTowardsPlayer);
+
+        if (directionTowardsPlayer.magnitude > objectAvoidanceDistance)
+            droneRigidbody.AddForce(directionTowardsPlayer.normalized * Speed);
+    }
+
+    private void AttemptAvoidanceManoeuvre(Vector2 directionTowardsPlayer)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionTowardsPlayer.normalized, objectAvoidanceDistance, LayerMask.GetMask(new string[] { "World" }));
+        if (hit.collider != null)
+            //Turn harder the closer you are to the target object
+            droneRigidbody.AddForce(Vector2.up * preferredTurnDirection * turnSpeed * hit.distance / objectAvoidanceDistance);
+    }
+
+    private void RotateTowardsPlayer(Vector2 directionTowardsPlayer)
+    {
+        Vector2 normalizedDirection = directionTowardsPlayer.normalized;
+        float rotationAmount = Mathf.Atan2(normalizedDirection.y, normalizedDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationAmount - 90);
     }
 }
