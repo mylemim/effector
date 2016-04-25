@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41455a512de0eb4995cdd72cb77d963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 153816, guid: e34acf18980f72247a6dc5cbeb20ef1b, type: 2}
+  ProjectilePrefab: {fileID: 170738, guid: 6c48f7688731da04fb1ef95d82f6aa57, type: 2}
   RelativeShootingDistanceFromShip: 0.468
   ShotsPerSecond: 4
   ProjectileSpeed: 1000

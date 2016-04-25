@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11449534}
   - 114: {fileID: 11423786}
   - 114: {fileID: 11402552}
+  - 114: {fileID: 11473664}
   m_Layer: 16
   m_Name: Enemy Drone
   m_TagString: Enemy
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.2879667, y: -0.35632038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,6 +103,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetTag: Player
   Speed: 350
+--- !u!114 &11473664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc4d466ddf158445b004cfab1c51e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetTag: Player
+  ProjectilePrefab: {fileID: 186690, guid: 3c75548e19b13b641bacbce75f7b0720, type: 2}
+  RelativeShootingDistanceFromShip: 1
+  ShotsPerSecond: 4
+  ProjectileSpeed: 1000
 --- !u!212 &21231798
 SpriteRenderer:
   m_ObjectHideFlags: 1

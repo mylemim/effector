@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DroneAI : MonoBehaviour
+public class DroneMovement : MonoBehaviour
 {
 
     public string TargetTag = "Player";
