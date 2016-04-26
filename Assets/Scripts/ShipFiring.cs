@@ -3,9 +3,16 @@ using System.Collections;
 
 public class ShipFiring : MonoBehaviour
 {
+    private const string PROJECTILES_GROUP_NAME = "Projectiles";
 
-	public GameObject ProjectilePrefab;
-	[Range(0,1)]
+    [Header("Projectiles")]
+    public GameObject ProjectilePrefab;
+    /// <summary>
+    /// Name of the group object the spawned projectile will be stored in
+    /// </summary>
+    private GameObject projectileGroup;
+
+    [Range(0,1)]
 	public float RelativeShootingDistanceFromShip = 1;
 	public float ShotsPerSecond = 20f;
 	public float ProjectileSpeed = 10f;
@@ -22,7 +29,11 @@ public class ShipFiring : MonoBehaviour
 	void Start ()
 	{
 		lastTimeOfFiring = Time.time;
-	}
+
+        projectileGroup = GameObject.Find(PROJECTILES_GROUP_NAME);
+        if (projectileGroup == null)
+            projectileGroup = new GameObject(PROJECTILES_GROUP_NAME);
+    }
 
 	void Update ()
 	{
@@ -40,8 +51,12 @@ public class ShipFiring : MonoBehaviour
 		                                                        (Vector2)transform.position+direction*RelativeShootingDistanceFromShip, 
 		                                                        transform.rotation);
 		Rigidbody2D projectileRigidbody = spawnedProjectile.GetComponent<Rigidbody2D> ();
-		
-		projectileRigidbody.AddForce (direction * ProjectileSpeed);
+
+        //Reference the target group
+        if (projectileGroup)
+            spawnedProjectile.transform.parent = projectileGroup.transform;
+
+        projectileRigidbody.AddForce (direction * ProjectileSpeed);
 		lastTimeOfFiring = Time.time;
 	}
 }
