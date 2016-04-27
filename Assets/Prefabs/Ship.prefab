@@ -60,7 +60,7 @@ GameObject:
   - 60: {fileID: 6029448}
   - 114: {fileID: 11414800}
   - 114: {fileID: 11467728}
-  - 114: {fileID: 11472414}
+  - 114: {fileID: 11421918}
   m_Layer: 24
   m_Name: Ship
   m_TagString: Player
@@ -298,6 +298,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThrustSpeed: 400
+--- !u!114 &11421918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4590c1f7fb9b7f74388d01159160fadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingHealthAmount: 150
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: ee55aa59011698342907b5869affd76d, type: 3}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Health+OnHealthChangedEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnObjectDeath:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &11467728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -313,51 +346,6 @@ MonoBehaviour:
   RelativeShootingDistanceFromShip: 0.468
   ShotsPerSecond: 4
   ProjectileSpeed: 1000
---- !u!114 &11472414
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6075e13cab6a1b4fb1a37edb53a5b64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartingHealthAmount: 150
-  HealthCounterName: Health Counter
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_Value
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_TypeName: PlayerHealth+OnHealthChangedEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnPlayerDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: PlayerLost
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!212 &21213196
 SpriteRenderer:
   m_ObjectHideFlags: 1
