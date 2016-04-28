@@ -13,14 +13,6 @@ public class Health : MonoBehaviour
 
     private DeathStrategy deathStrategy = new DefaultDeathStrategy();
 
-    private class DefaultDeathStrategy : DeathStrategy
-    {
-        public void Die(GameObject gameObject)
-        {
-            GameObject.Destroy(gameObject);
-        }
-    }
-
     [Serializable]
     public class OnHealthChangedEvent : UnityEvent<int> { };
 

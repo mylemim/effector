@@ -3,14 +3,8 @@ using System.Collections;
 
 public class ShipFiring : MonoBehaviour
 {
-    private const string PROJECTILES_GROUP_NAME = "Projectiles";
-
     [Header("Projectiles")]
     public GameObject ProjectilePrefab;
-    /// <summary>
-    /// Name of the group object the spawned projectile will be stored in
-    /// </summary>
-    private GameObject projectileGroup;
 
     [Range(0,1)]
 	public float RelativeShootingDistanceFromShip = 1;
@@ -26,13 +20,13 @@ public class ShipFiring : MonoBehaviour
 		}
 	}
 
+    private ProjectileSpawn projectileSpawn;
+
 	void Start ()
 	{
 		lastTimeOfFiring = Time.time;
 
-        projectileGroup = GameObject.Find(PROJECTILES_GROUP_NAME);
-        if (projectileGroup == null)
-            projectileGroup = new GameObject(PROJECTILES_GROUP_NAME);
+        projectileSpawn = GameObject.Find("Projectiles").GetComponent<ProjectileSpawn>();
     }
 
 	void Update ()
@@ -46,15 +40,12 @@ public class ShipFiring : MonoBehaviour
 		Vector2 mousePosition = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 		Vector2 direction = Camera.main.ScreenToWorldPoint (mousePosition) - transform.position;
 		direction.Normalize ();
-		
-		GameObject spawnedProjectile = (GameObject)Instantiate (ProjectilePrefab, 
-		                                                        (Vector2)transform.position+direction*RelativeShootingDistanceFromShip, 
-		                                                        transform.rotation);
-		Rigidbody2D projectileRigidbody = spawnedProjectile.GetComponent<Rigidbody2D> ();
 
-        //Reference the target group
-        if (projectileGroup)
-            spawnedProjectile.transform.parent = projectileGroup.transform;
+        GameObject spawnedProjectile = projectileSpawn.CreateProjectile();
+        spawnedProjectile.transform.position = (Vector2)transform.position + direction * RelativeShootingDistanceFromShip;
+        spawnedProjectile.transform.rotation = transform.rotation;
+
+		Rigidbody2D projectileRigidbody = spawnedProjectile.GetComponent<Rigidbody2D> ();
 
         projectileRigidbody.AddForce (direction * ProjectileSpeed);
 		lastTimeOfFiring = Time.time;
