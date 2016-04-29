@@ -5,15 +5,21 @@ using UnityEngine.Events;
 
 public class ObjectPool
 {
-    public GameObject objectPrefab;
+    public GameObject ObjectPrefab;
 
     private Queue<GameObject> pooledObjects;
 
     public ObjectPool(GameObject objectPrefab)
     {
         pooledObjects = new Queue<GameObject>();
-        this.objectPrefab = objectPrefab;
+        this.ObjectPrefab = objectPrefab;
     }
+
+	public ObjectPool(GameObject objectPrefab, int initialObjects) : this(objectPrefab)
+	{
+		for (int i = 0; i < initialObjects; i++)
+			PoolObject (GameObject.Instantiate (objectPrefab));
+	}
 
     public GameObject CreateObject()
     {
@@ -25,7 +31,7 @@ public class ObjectPool
             createdObject.SetActive(true);
         }
         else
-            createdObject = GameObject.Instantiate(objectPrefab);
+            createdObject = GameObject.Instantiate(ObjectPrefab);
 
         return createdObject;
     }

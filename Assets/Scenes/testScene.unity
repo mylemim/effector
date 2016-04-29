@@ -384,13 +384,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db83a8a4e6080479cb4fd86a48171a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPrefab: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629, type: 2}
-  waitingTimeBetweenSpawns: 1
-  gameObjectsToInstantiate: 10
-  targetGroup: {fileID: 332350722}
-  spawnLocations:
-  - {x: 12, y: 0}
+  ObjectPrefab: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629, type: 2}
+  WaitingTimeBetweenSpawns: 1
+  GameObjectsToInstantiate: 10
+  SpawnLocations:
   - {x: -12, y: 0}
+  - {x: 12, y: 0}
   OnAllEnemiesDestroyed:
     m_PersistentCalls:
       m_Calls:
@@ -1886,6 +1885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 158686, guid: 83cebe2877b5ec14b9fd3dccf75e4c90, type: 2}
+  InitialCachedProjectiles: 100
 --- !u!4 &1987949338
 Transform:
   m_ObjectHideFlags: 0

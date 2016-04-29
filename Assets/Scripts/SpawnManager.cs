@@ -5,72 +5,81 @@ using System;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject objectPrefab;
-    public float waitingTimeBetweenSpawns = 5; //seconds
-    public int gameObjectsToInstantiate = 10;
-    /// <summary>
-    /// Name of the group object the spawned objects will be stored in
-    /// </summary>
-    public GameObject targetGroup;
-    public Vector2[] spawnLocations;
+	public GameObject ObjectPrefab;
+	public float WaitingTimeBetweenSpawns = 5;
+	//seconds
+	public int GameObjectsToInstantiate = 10;
 
-    public UnityEvent OnAllEnemiesDestroyed;
+	public Vector2[] SpawnLocations;
 
-    private int instantiatedGameObjects;
-    private float lastSpawnTime;
+	public UnityEvent OnAllEnemiesDestroyed;
 
-    private int destroyedGameObjects = 0;
+	private int instantiatedGameObjects;
+	private float lastSpawnTime;
 
-    private ObjectPool objectPool;
+	private int destroyedGameObjects = 0;
 
-    [ExecuteInEditMode]
-    void OnValidate()
-    {
-        gameObjectsToInstantiate = Mathf.Abs(gameObjectsToInstantiate);
-        waitingTimeBetweenSpawns = Mathf.Abs(waitingTimeBetweenSpawns);
-    }
+	private ObjectPool objectPool;
 
-    void Start()
-    {
-        objectPool = new ObjectPool(objectPrefab);
+	[ExecuteInEditMode]
+	void OnValidate ()
+	{
+		GameObjectsToInstantiate = Mathf.Abs (GameObjectsToInstantiate);
+		WaitingTimeBetweenSpawns = Mathf.Abs (WaitingTimeBetweenSpawns);
+	}
 
-        instantiatedGameObjects = 0;
-        lastSpawnTime = 0;
-    }
+	void Start ()
+	{
+		objectPool = new ObjectPool (ObjectPrefab);
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (spawnLocations.Length > 0 && instantiatedGameObjects < gameObjectsToInstantiate && Time.time - lastSpawnTime > waitingTimeBetweenSpawns)
-        {
-            Vector2 spawnLocation = spawnLocations[UnityEngine.Random.Range(0, spawnLocations.Length)];
+		for (int i = 0; i < GameObjectsToInstantiate; i++)
+			objectPool.PoolObject (CreateObject ());
 
-            GameObject spawnedGameObject = objectPool.CreateObject();
-            spawnedGameObject.transform.position = spawnLocation;
-            spawnedGameObject.transform.rotation = Quaternion.identity;
+		instantiatedGameObjects = 0;
+		lastSpawnTime = 0;
+	}
 
-            //Add reference to spawn so we can recognize when this object has been destroyed
-            Health health = spawnedGameObject.GetComponent<Health>();
-            if (health)
-            {
-                health.OnObjectDeath.AddListener(NotifyOfSpawnedObjectDestroyed);
-				health.SetDeathStrategy(new PooledObjectDeathStrategy(objectPool));
-            }
-                
-            //Reference the target group
-            if (targetGroup)
-                spawnedGameObject.transform.parent = targetGroup.transform;            
+	// Update is called once per frame
+	void Update ()
+	{
+		if (SpawnLocations.Length > 0 && instantiatedGameObjects < GameObjectsToInstantiate && Time.time - lastSpawnTime > WaitingTimeBetweenSpawns)
+			SpawnObject ();
+	}
 
-            lastSpawnTime = Time.time;
-            instantiatedGameObjects += 1;
-        }
-    }
+	public GameObject CreateObject ()
+	{
+		Vector2 spawnLocation = SpawnLocations [UnityEngine.Random.Range (0, SpawnLocations.Length)];
+		GameObject spawnedGameObject = objectPool.CreateObject ();
+		spawnedGameObject.transform.position = spawnLocation;
+		spawnedGameObject.transform.rotation = Quaternion.identity;
 
-    public void NotifyOfSpawnedObjectDestroyed()
-    {
-        destroyedGameObjects++;
+		//Reference the target group
+		spawnedGameObject.transform.parent = gameObject.transform;
 
-        if (destroyedGameObjects == gameObjectsToInstantiate)
-            OnAllEnemiesDestroyed.Invoke();
-    }
+		return spawnedGameObject;
+	}
+
+	public GameObject SpawnObject(){
+		GameObject spawnedGameObject = CreateObject ();
+
+		//Add reference to spawn so we can recognize when this object has been destroyed
+		Health health = spawnedGameObject.GetComponent<Health> ();
+		if (health) {
+			health.OnObjectDeath.AddListener (NotifyOfSpawnedObjectDestroyed);
+			health.SetDeathStrategy (new PooledObjectDeathStrategy (objectPool));
+		}
+
+		lastSpawnTime = Time.time;
+		instantiatedGameObjects += 1;
+
+		return spawnedGameObject;
+	}
+
+	public void NotifyOfSpawnedObjectDestroyed ()
+	{
+		destroyedGameObjects++;
+
+		if (destroyedGameObjects == GameObjectsToInstantiate)
+			OnAllEnemiesDestroyed.Invoke ();
+	}
 }

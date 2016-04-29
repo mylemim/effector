@@ -7,21 +7,28 @@ public class ProjectileSpawn : MonoBehaviour
 
     private ObjectPool objectPool;
 
+	public int InitialCachedProjectiles = 100;
+
     // Use this for initialization
     void Start()
     {
-        objectPool = new ObjectPool(ProjectilePrefab);
-    }
+		objectPool = new ObjectPool(ProjectilePrefab);
 
-    // Update is called once per frame
+		for (int i = 0; i < InitialCachedProjectiles; i++)
+			objectPool.PoolObject (CreateProjectile ());
+    }
+		
     public GameObject CreateProjectile()
     {
         GameObject spawnedGameObject = objectPool.CreateObject();
-        Projectile projectileBehavior = spawnedGameObject.GetComponent<Projectile>();
-		projectileBehavior.SetDeathStrategy(new PooledObjectDeathStrategy(objectPool));
-
         spawnedGameObject.transform.parent = gameObject.transform;
-
         return spawnedGameObject;
     }
+
+	public GameObject SpawnProjectile(){
+		GameObject spawnedGameObject = CreateProjectile ();
+		Projectile projectileBehavior = spawnedGameObject.GetComponent<Projectile>();
+		projectileBehavior.SetDeathStrategy(new PooledObjectDeathStrategy(objectPool));
+		return spawnedGameObject;
+	}
 }
