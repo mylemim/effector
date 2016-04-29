@@ -30,21 +30,6 @@ public class SpawnManager : MonoBehaviour
         waitingTimeBetweenSpawns = Mathf.Abs(waitingTimeBetweenSpawns);
     }
 
-    private class SpawnedObjectDeathStrategy : DeathStrategy
-    {
-        ObjectPool pool;
-
-        public SpawnedObjectDeathStrategy(ObjectPool pool)
-        {
-            this.pool = pool;
-        }
-
-        public void Die(GameObject gameObject)
-        {
-            pool.PoolObject(gameObject);
-        }
-    }
-
     void Start()
     {
         objectPool = new ObjectPool(objectPrefab);
@@ -69,7 +54,7 @@ public class SpawnManager : MonoBehaviour
             if (health)
             {
                 health.OnObjectDeath.AddListener(NotifyOfSpawnedObjectDestroyed);
-                health.SetDeathStrategy(new SpawnedObjectDeathStrategy(objectPool));
+				health.SetDeathStrategy(new PooledObjectDeathStrategy(objectPool));
             }
                 
             //Reference the target group

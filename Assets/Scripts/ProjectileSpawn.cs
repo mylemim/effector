@@ -7,21 +7,6 @@ public class ProjectileSpawn : MonoBehaviour
 
     private ObjectPool objectPool;
 
-    private class SpawnedObjectDeathStrategy : DeathStrategy
-    {
-        ObjectPool pool;
-
-        public SpawnedObjectDeathStrategy(ObjectPool pool)
-        {
-            this.pool = pool;
-        }
-
-        public void Die(GameObject gameObject)
-        {
-            pool.PoolObject(gameObject);
-        }
-    }
-
     // Use this for initialization
     void Start()
     {
@@ -33,7 +18,7 @@ public class ProjectileSpawn : MonoBehaviour
     {
         GameObject spawnedGameObject = objectPool.CreateObject();
         Projectile projectileBehavior = spawnedGameObject.GetComponent<Projectile>();
-        projectileBehavior.SetDeathStrategy(new SpawnedObjectDeathStrategy(objectPool));
+		projectileBehavior.SetDeathStrategy(new PooledObjectDeathStrategy(objectPool));
 
         spawnedGameObject.transform.parent = gameObject.transform;
 
