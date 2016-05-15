@@ -2,56 +2,46 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+	public static GameManager instance = null;
+	//Static instance of GameManager which allows it to be accessed by any other script.
 
-    public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
+	public int Level {
+		get {
+			return level;
+		}
+	}
 
-    private int level = 1;
-    private UiManager uiManager;
+	private int level = 1;
 
-    //Awake is always called before any Start functions
-    void Awake()
-    {
-        //Singleton pattern
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+	//Awake is always called before any Start functions
+	void Awake ()
+	{
+		Debug.Log ("Game manager awake");
 
-        //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
+		//Singleton pattern
+		if (instance == null) {
+			Debug.Log ("Game manager got new instance");
+			instance = this;
+		}
+		else if (instance != this) {
+			Destroy (gameObject);
+		}
 
-        uiManager = GetComponent<UiManager>();
+		DontDestroyOnLoad (gameObject);
+	}
 
-        //Call the InitGame function to initialize the first level 
-        InitGame();
-    }
+	void OnLevelWasLoaded (int level)
+	{
+		this.level++;
+	}
 
-    //Initializes the game for each level.
-    void InitGame()
-    {
-        uiManager.InitUi();
-    }
-
-    // Use this for initialization
-    void Start () {
-
-    }
-		
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void PlayerWon()
-    {
-        level++;
-        uiManager.PlayerWon();
-    }
-
-    public void PlayerLost()
-    {
-        uiManager.PlayerLost();
-    }
+	public void RestartLevel ()
+	{
+		Debug.Log ("Restarting level");
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+	}
 }

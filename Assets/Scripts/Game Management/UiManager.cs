@@ -6,7 +6,7 @@ public class UiManager : MonoBehaviour
     GameObject winNotification;
     GameObject loseNotification;
 
-    public void InitUi()
+    public void Start()
     {
         winNotification = GameObject.Find("PlayerWon");
         loseNotification = GameObject.Find("PlayerLost");

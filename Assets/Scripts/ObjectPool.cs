@@ -26,12 +26,11 @@ public class ObjectPool
         GameObject createdObject;
 
         if (pooledObjects.Count > 0)
-        {
             createdObject = pooledObjects.Dequeue();
-            createdObject.SetActive(true);
-        }
         else
             createdObject = GameObject.Instantiate(ObjectPrefab);
+
+        createdObject.SetActive(true);
 
         return createdObject;
     }
@@ -40,5 +39,13 @@ public class ObjectPool
     {
         gameObject.SetActive(false);
         pooledObjects.Enqueue(gameObject);
+    }
+
+    public void ClosePool()
+    {
+        foreach(GameObject gObject in pooledObjects)
+        {
+            GameObject.Destroy(gObject);
+        }
     }
 }
