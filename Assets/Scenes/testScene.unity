@@ -636,7 +636,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart level
+  m_Text: Next level
 --- !u!222 &615380804
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectPrefab: {fileID: 118260, guid: d6d2b24e6588a7a48b520449ca41d629, type: 2}
-  WaitingTimeBetweenSpawns: 0
+  WaitingTimeBetweenSpawns: 1
   GameObjectsToInstantiate: 3
   HolderObjectName: Enemies
   SpawnLocations:
@@ -852,36 +852,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 989565009}
-  - 114: {fileID: 989565008}
   m_Layer: 8
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &989565008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 989565007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6255e65ba14ec34681e2bd22f6dcf3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameObjectToInstantiate: {fileID: 150036, guid: 240956a81017853409809bfdb8cc49e8,
-    type: 2}
-  minGameObjectsToInstantiate: 3
-  maxGameObjectsToInstantiate: 7
-  staticLayerName: World
-  minX: -8
-  maxX: 8
-  minY: -3
-  maxY: 4
-  maxDistanceRadius: 3
-  targetGroup: {fileID: 315875632}
+  m_IsActive: 1
 --- !u!4 &989565009
 Transform:
   m_ObjectHideFlags: 0
@@ -1220,6 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad64c72757b4cf47a3681fb421c65c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemiesPerLevelMultiplier: 2
 --- !u!4 &1402934909
 Transform:
   m_ObjectHideFlags: 0
@@ -1232,6 +1210,7 @@ Transform:
   m_Children:
   - {fileID: 621824153}
   - {fileID: 2119416388}
+  - {fileID: 1545123934}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1001 &1415860072
@@ -1340,6 +1319,10 @@ Prefab:
     - target: {fileID: 11408118, guid: 854a6d270b75aa84b8c05615850c0863, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CompleteLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 11487812, guid: 854a6d270b75aa84b8c05615850c0863, type: 2}
+      propertyPath: m_Text
+      value: Next level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 854a6d270b75aa84b8c05615850c0863, type: 2}
@@ -1612,6 +1595,56 @@ Transform:
   - {fileID: 1972052190}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &1545123933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1545123934}
+  - 114: {fileID: 1545123935}
+  m_Layer: 0
+  m_Name: EnvironmentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1545123934
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545123933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1402934909}
+  m_RootOrder: 2
+--- !u!114 &1545123935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545123933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6255e65ba14ec34681e2bd22f6dcf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectToInstantiate: {fileID: 150036, guid: 240956a81017853409809bfdb8cc49e8,
+    type: 2}
+  minGameObjectsToInstantiate: 3
+  maxGameObjectsToInstantiate: 7
+  staticLayerName: World
+  minX: -8
+  maxX: 8
+  minY: -3
+  maxY: 4
+  maxDistanceRadius: 3
+  targetGroup: {fileID: 315875632}
 --- !u!1 &1619387632
 GameObject:
   m_ObjectHideFlags: 0
