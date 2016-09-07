@@ -36,11 +36,12 @@ public class GameManager : MonoBehaviour
 
 	void OnLevelWasLoaded (int level)
 	{
-		this.level++;
+		Debug.Log ("Level loaded");
 	}
 
 	public void RestartLevel ()
 	{
+		this.level++;
 		Debug.Log ("Restarting level");
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 	}
